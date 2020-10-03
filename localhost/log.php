@@ -17,7 +17,7 @@ $result = $stmt->fetch();
 
 if (md5($password) == $result['password']) {
     $_SESSION['auth'] = $result['login'];
-    header('Location: http://localhost/user.php');
+    header('Location: http://localhost/check.php');
 } else {
     echo ("Польователь не найден");
 }

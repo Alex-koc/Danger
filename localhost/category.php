@@ -1,4 +1,20 @@
 <?php
+session_start();
+require_once 'mysql.php';
+if(isset($_SESSION['auth']))
+{
+    $stmt= $pdo->query('SELECT * FROM `users` WHERE login="'.$_SESSION['auth'].'"');
+    $proverka = $stmt->fetch();
+    $admin = $proverka['admin'];
+    if($admin != 2){
+        header('Location: http://localhost/user.php');
+     }
+
+} else {
+    header('Location: http://localhost');
+  
+}
+
 $zapis = $_GET['zapis'];
 if ($zapis != '') {
     if ($zapis == "false") {
@@ -25,11 +41,7 @@ if ($zapis != '') {
         </form>
         <form action="spisok_category.php">
             <br>
-            <button>Категории</button>
-        </form>
-        <form action="index.html">
-            <br>
-            <button>Главное меню</button>
+            <button>Назад</button>
         </form>
     </div>
 </section>

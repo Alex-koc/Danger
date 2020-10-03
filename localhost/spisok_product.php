@@ -1,11 +1,23 @@
 <?php
+session_start();
 require_once 'mysql.php';
-
 
 $sql = "SELECT * FROM `product`";
 $result = $pdo->query($sql);
 
+if(isset($_SESSION['auth']))
+{
+    $stmt= $pdo->query('SELECT * FROM `users` WHERE login="'.$_SESSION['auth'].'"');
+    $proverka = $stmt->fetch();
+    $admin = $proverka['admin'];
+    if($admin != 2){
+        header('Location: http://localhost/user.php');
+     }
 
+} else {
+    header('Location: http://localhost');
+  
+}
 ?>
 
 <!DOCTYPE html>
@@ -49,9 +61,9 @@ $result = $pdo->query($sql);
         <form action="product.php">
             <button>Добавить товар</button>
         </form>
-        <form action="main.html">
+        <form action="admin_panel.php">
             <br>
-            <button>Главное меню</button>
+            <button>Назад</button>
         </form>
     </div>
 </section>
