@@ -15,7 +15,11 @@
             </p>
             <p class="submit"><input type="submit"  name="commit" value="Вход"></p>
         </form>
-        <p>Вы не зарегистрированы? <a href="reg.php">То нажмите сюда! </a> </p>
+        <p>Вы не зарегистрированы? <a href="register.php">То нажмите сюда! </a> </p>
+        <form action="index.html">
+            <br>
+            <button>Назад</button>
+        </form>
     </div>
 </section>
 </body>

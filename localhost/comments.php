@@ -21,11 +21,12 @@ $id = $_GET['id'];
 
         <h1>Коментарии</h1>
         <?php
-        $stmt = $pdo->query("SELECT * FROM `comments`  WHERE `art` =".$id);
-        echo "<table><tr><th>Название</th><th>Описание</th></tr>";
+        $stmt = $pdo->query("SELECT *,comments.id AS idR FROM `comments` LEFT JOIN users ON comments.user = users.id WHERE `art` =".$id);
+        echo "<table><tr><th>№</th><th>ИМЯ</th><th>Описание</th></tr>";
         while ($row = $stmt->fetch())
         {
             echo "<tr>";
+            echo '<td>'.$row['idR'].'</td>';
             echo '<td>'.$row['name'].'</td>';
             echo '<td>'.$row['text'].'</td>';
             echo "</tr>";
@@ -38,6 +39,10 @@ $id = $_GET['id'];
             <br>
             <button>Назад</button>
         </form>
+        <?php echo '<from method="post" action="comment.php?id="'.$id.'">';
+              echo '<p class="submit"><input type="submit"  name="commit" value="Добавить коментарий"></p>';
+              echo '</form>';
+        ?>
     </div>
 </section>
 </body>

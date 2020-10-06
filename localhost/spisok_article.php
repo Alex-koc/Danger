@@ -1,7 +1,19 @@
 <?php
-
+session_start();
 require_once 'mysql.php';
+if(isset($_SESSION['auth']))
+{
+    $stmt= $pdo->query('SELECT * FROM `users` WHERE login="'.$_SESSION['auth'].'"');
+    $proverka = $stmt->fetch();
+    $admin = $proverka['admin'];
+    if($admin != 2){
+        header('Location: http://localhost/user.php');
+     }
 
+} else {
+    header('Location: http://localhost');
+  
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +35,7 @@ require_once 'mysql.php';
         <h1>Статьи</h1>
         <?php
         $stmt = $pdo->query('SELECT *, `article`.id AS idR FROM `article` ORDER BY idR DESC');
-        echo "<table><tr><th>№</th><th>Название</th><th>Описание</th><th>Фото</th></tr>";
+        echo "<table><tr><th>№</th><th>Название</th><th>Описание</th><th>Фото</th><th>Редактировать</th><th>Удалить</th></tr>";
         while ($row = $stmt->fetch())
         {
             echo "<tr>";
@@ -31,13 +43,19 @@ require_once 'mysql.php';
             echo '<td><a href="comments.php?id='.$row['id'].'">'.$row['name'].'</a></td>';
             echo '<td>'.$row['text'].'</td>';
             echo '<td><img src="images/'.$row['photo'].'" alt="Здесь должна быть картинка" width="150" height="150"></td>';
+            echo '<td><a href="update_spisok_article.php?id='.$row['id'].'">Редактировать</a></td>';
+            echo '<td><a href="delete_spisok_article.php?id='.$row['id'].'">Удалить</a></td>';
             echo "</tr>";
 
         }
         ?>
         </table>
         <br>
-        <form action="index.html">
+        <form action="articles.php">
+            <button>Добавить статью</button>
+        </form>
+        <br>
+        <form action="admin_panel.php">
             <br>
             <button>Назад</button>
         </form>

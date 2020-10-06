@@ -1,6 +1,6 @@
 <?php
-session_start();
 require_once 'mysql.php';
+session_start();
 if(isset($_SESSION['auth']))
 {
     $stmt= $pdo->query('SELECT * FROM `users` WHERE login="'.$_SESSION['auth'].'"');
@@ -16,6 +16,7 @@ if(isset($_SESSION['auth']))
 }
 
 $id = $_GET['id'];
-$stmt = $pdo->query("DELETE FROM `product` WHERE id = ".$id);
+$stmt = $pdo->query("DELETE FROM `article` WHERE id = ".$id);
 
-header('Location: spisok_product.php');
+
+header('Location: spisok_article.php');

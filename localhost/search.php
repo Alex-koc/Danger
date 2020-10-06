@@ -23,7 +23,7 @@
             echo '<td>'.$row['name'].'</td>';
             echo '<td>'.$row['text'].'</td>';
             echo '<td>'.$row['price'].'</td>';
-            echo '<td><img src="'.$row['photo'].'" alt="Здесь должна быть картинка" width="150" height="150"></td>';
+            echo '<td><img src="images/'.$row['photo'].'" alt="Здесь должна быть картинка" width="150" height="150"></td>';
             echo "</tr>";
 
         }
