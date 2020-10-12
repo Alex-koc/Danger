@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 03 2020 г., 10:41
--- Версия сервера: 10.3.13-MariaDB
--- Версия PHP: 7.1.22
+-- Время создания: Окт 06 2020 г., 07:03
+-- Версия сервера: 5.6.41
+-- Версия PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,7 +43,7 @@ CREATE TABLE `article` (
 INSERT INTO `article` (`id`, `user`, `name`, `text`, `photo`) VALUES
 (1, 1, 'Новый завоз', 'Фрукты и овощи! У нас новое поступление самой свежей и натуральной продукции! Успейте приобрести', '134834263.jpg'),
 (2, 4, 'Инжир', 'Новый товар в нашем ассортименте! Вкусный инжир!', '143-1.jpg'),
-(3, 4, 'Проверка', 'Проверка', '');
+(3, 4, 'Продукты для похудения', 'Уже совсем скоро ожидается завоз продуктов для похудения', 'produkti_bistro_4-e1433153357927.jpg');
 
 -- --------------------------------------------------------
 
@@ -63,7 +63,8 @@ CREATE TABLE `category` (
 INSERT INTO `category` (`id`, `name`) VALUES
 (4, 'Яблоки'),
 (5, 'Мандарины'),
-(6, 'Бананы');
+(6, 'Бананы'),
+(7, 'Морковь');
 
 -- --------------------------------------------------------
 
@@ -83,9 +84,9 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `art`, `user`, `text`) VALUES
-(1, 1, 3, 'Понял-принял'),
-(2, 2, 4, 'Хорошие товары, высший сорт, цена приятная! Чудо а не магазмн'),
-(3, 2, 4, 'Вкусно');
+(1, 2, 3, 'Понял-принял'),
+(2, 1, 4, 'Хорошие товары, высший сорт, цена приятная! Чудо а не магазмн'),
+(3, 3, 5, 'Вкусно');
 
 -- --------------------------------------------------------
 
@@ -112,7 +113,8 @@ INSERT INTO `product` (`id`, `name`, `text`, `price`, `photo`, `сat`) VALUES
 (4, 'Мандарин', 'Сладкое', '14', '6XZSr6ddCl6cxfo0UchP.jpg', 0),
 (5, 'Апельсин', 'Кислый из Марроко', '15', 'unnamed (1).jpg', 0),
 (6, 'Банан', 'Африка', '18', 'Без названия.jfif', 0),
-(7, 'Инжир', 'Плод фигового дерева', '500', '143-1.jpg', 0);
+(7, 'Инжир', 'Плод фигового дерева', '500', '143-1.jpg', 0),
+(8, 'Морковь', 'Сладкая свежая морковка', '20', 'depositphotos_69387697-stock-photo-carrots.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -137,7 +139,8 @@ INSERT INTO `users` (`id`, `admin`, `login`, `name`, `phone`, `password`) VALUES
 (1, 2, 'Admin', 'Администратор', '+3131312313', 'e3afed0047b08059d0fada10f400c1e5'),
 (2, 1, 'User', 'Андрей', '+32323213131', '202cb962ac59075b964b07152d234b70'),
 (3, 1, 'Lolka', 'Александр', '+1213131121', '81dc9bdb52d04dc20036dbd8313ed055'),
-(4, 1, 'Tolia', 'Толя', '+86363632', '698d51a19d8a121ce581499d7b701668');
+(4, 1, 'Tolia', 'Толя', '+86363632', '698d51a19d8a121ce581499d7b701668'),
+(5, 1, 'JJ', 'Иван', '3457438954879', '698d51a19d8a121ce581499d7b701668');
 
 --
 -- Индексы сохранённых таблиц
@@ -179,22 +182,34 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `article`
+--
+ALTER TABLE `article`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT для таблицы `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -22,7 +22,7 @@ $price=$_POST['price'];
 $photo=$_FILES['photo']['name'];
 
 if(isset($_FILES) && $_FILES['photo']['error'] == 0){
-    $destiation_dir = './images/products/'.$_FILES['photo']['name'];
+    $destiation_dir = './images/'.$_FILES['photo']['name'];
     if (move_uploaded_file($_FILES['photo']['tmp_name'], $destiation_dir )) {
         $stmt= $pdo->query('INSERT INTO `product` (`name`, `text`, `price`, `photo`)
             VALUES ("'.$name.'", "'.$text.'", "'.$price.'", "'.$photo.'")');
